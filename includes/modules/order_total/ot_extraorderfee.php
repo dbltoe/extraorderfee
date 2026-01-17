@@ -25,7 +25,7 @@ class ot_extraorderfee
     {
         $this->title       = MODULE_ORDER_TOTAL_EXTRAORDERFEE_TITLE;
         $this->description = MODULE_ORDER_TOTAL_EXTRAORDERFEE_DESCRIPTION;
-        $this->sort_order  = MODULE_ORDER_TOTAL_EXTRAORDERFEE_SORT_ORDER;
+        $this->sort_order = (defined('MODULE_ORDER_TOTAL_EXTRAORDERFEE_SORT_ORDER')) ? MODULE_ORDER_TOTAL_EXTRAORDERFEE_SORT_ORDER : null;
     }
 
     public function process(): void
@@ -271,4 +271,5 @@ class ot_extraorderfee
         $db->Execute("DELETE FROM " . TABLE_CONFIGURATION . "
                       WHERE configuration_key LIKE 'MODULE\\_ORDER\\_TOTAL\\_EXTRAORDERFEE\\_%'");
     }
+
 }
