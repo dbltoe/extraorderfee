@@ -116,10 +116,9 @@ class ot_extraorderfee
                   AND zone_country_id = :countryId
                 ORDER BY zone_id";
 
-        $result = $db->Execute($sql, [
-            ':zoneId'    => $zoneId,
-            ':countryId' => $countryId,
-        ]);
+        $sql = $db->bindVars($sql, ':zoneId', $zoneId, 'integer');
+        $sql = $db->bindVars($sql, ':countryId', $countryId, 'integer');
+        $result = $db->Execute($sql); 
 
         while (!$result->EOF) {
             $zone = (int)$result->fields['zone_id'];
@@ -167,7 +166,8 @@ class ot_extraorderfee
             $manSql = "SELECT manufacturers_id
                        FROM " . TABLE_PRODUCTS . "
                        WHERE products_id = :productId";
-            $manResult = $db->Execute($manSql, [':productId' => $productId]);
+            $manSql =  $db->bindVars($manSql, ':productId', $productId, 'integer');;
+            $manResult = $db->Execute($manSql, 1);
             $manId = ($manResult->RecordCount() > 0) ? (int)$manResult->fields['manufacturers_id'] : 0;
 
             // Check manufacturer match
@@ -180,7 +180,8 @@ class ot_extraorderfee
                 $catSql = "SELECT categories_id
                            FROM " . TABLE_PRODUCTS_TO_CATEGORIES . "
                            WHERE products_id = :productId";
-                $catResult = $db->Execute($catSql, [':productId' => $productId]);
+                $catSql =  $db->bindVars($catSql, ':productId', $productId, 'integer');;
+                $catResult = $db->Execute($catSql, 1);
 
                 while (!$catResult->EOF) {
                     $catId = (int)$catResult->fields['categories_id'];
@@ -273,3 +274,4 @@ class ot_extraorderfee
     }
 
 }
+
