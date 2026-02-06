@@ -13,10 +13,30 @@ No warranties expressed or implied; use at your own risk.
 
 ---
 ## Overview:
-Extra Order Fee is for addition Order Fee with or without a Zone and is based on an Amount or Percentage charge. It is also selectable by Manufacturer and/or Category.  After being loaded, your settings will appear in Admin > Modules > Order Total > Extra Order Fee.
+The **Extra Order Fee** module is a flexible **order-total addon** for Zen Cart that lets you add a surcharge (fee) to customer orders during checkout. It supports **percentage-based fees** (calculated on item subtotals) and applies them selectively based on:
+
+- Specific **manufacturers** (e.g., higher fees for certain brands/suppliers),
+- Specific **categories** (including all linked categories a product belongs to),
+- Specific **products** (direct per-product overrides).
+
+Key features include:
+- Configurable via **Admin > Modules > Order Total > Extra Order Fee**.
+- Fees are **percentage-only** (e.g., `5:8,9:20` format for "Manufacturer ID 5 = 8%, ID 9 = 20%").
+- **Priority logic**: Product-specific fee > highest matching category fee > manufacturer fee (if multiple apply to one item, the most specific wins).
+- Optional restrictions by **shipping zone** (geo-based) and **tax class** (for applying the correct sales tax to the fee).
+- **No flat/fixed fee** option — all fees are percentage-based for better accuracy on varying order totals.
+- Tested with Zen Cart 2.2.0-alpha and PHP thru 8.4 (uses modern array language files and strict constant checks).
+- As always, install at your own risk.
+
+After installation/upgrade, configure your fees in the module settings. The fee will automatically appear as a line item on the checkout confirmation page and be added to the order total (with tax if configured).
+
+This makes it ideal for scenarios like supplier-mandated handling fees, category-specific surcharges, or premium product markups — all without affecting unrelated items.
 
 ---
+## Changes in 2.1.0:
+The overall flat rate was removed, and now the extra order fees can be set for a specific Manufacturer, Category, and/or Product ID.
 
+---
 ## Installation Instructions:
 
 1. Backup, Backup, Backup!
