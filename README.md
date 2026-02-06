@@ -1,5 +1,5 @@
 # Extra Order Fee
-## Version v2.0.0
+## Version v2.1.0
 
 ---
 Released under the GNU General Public License
@@ -20,13 +20,20 @@ Extra Order Fee is for addition Order Fee with or without a Zone and is based on
 ## Installation Instructions:
 
 1. Backup, Backup, Backup!
-
 2. Unzip the file you have received.
-
-3. Copy files into the same structure of your site.
+3. Copy files into the same structure as your site.
 
 /includes/languages/english/modules/order_total/ot_extraorderfee.php
 /includes/modules/order_total/ot_extraorderfee.php
+
+## Upgrading from previous versions:
+
+1. Upload the new ot_extraorderfee.php file
+2. In Admin → Modules → Order Totals → Extra Order Fee:
+   - Click the module row
+   - In the sidebar, click "Remove"
+   - Then click "Install" to re-add with the new configuration options
+3. Re-configure the new per-manufacturer/category/product percentage settings (old flat fee setting will be gone)
 
 
 ## No Core files are overwritten with this module.
