@@ -23,8 +23,8 @@ Extra Order Fee is for addition Order Fee with or without a Zone and is based on
 2. Unzip the file you have received.
 3. Copy files into the same structure as your site.
 
-/includes/languages/english/modules/order_total/ot_extraorderfee.php
-/includes/modules/order_total/ot_extraorderfee.php
+`/includes/languages/english/modules/order_total/ot_extraorderfee.php`<br>
+`/includes/modules/order_total/ot_extraorderfee.php`
 
 ## Upgrading from previous versions:
 
