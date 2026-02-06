@@ -28,7 +28,7 @@ Extra Order Fee is for addition Order Fee with or without a Zone and is based on
 
 ## Upgrading from previous versions:
 
-1. Upload the new ot_extraorderfee.php file
+1. Upload the new files overwriting the files from version 2.00.0
 2. In Admin → Modules → Order Totals → Extra Order Fee:
    - Click the module row
    - In the sidebar, click "Remove"
