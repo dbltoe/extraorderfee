@@ -6,7 +6,8 @@
  * @copyright Copyright 2003-2026 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license   http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version   $Id: ot_extraorderfee.php 6101 2026-02-06 10:30:22Z db ltoe $
+ * @version   $Id: ot_extraorderfee.php 6101 2026-03-06 15:30:22Z dbltoe $
+ * @version   2.1.0
  */
 
 declare(strict_types=1);
@@ -42,6 +43,14 @@ class ot_extraorderfee
         $this->manFees = $this->parseFeeConfig('MODULE_ORDER_TOTAL_EXTRAORDERFEE_MANUFACTURERS');
         $this->catFees = $this->parseFeeConfig('MODULE_ORDER_TOTAL_EXTRAORDERFEE_CATEGORIES');
         $this->prodFees = $this->parseFeeConfig('MODULE_ORDER_TOTAL_EXTRAORDERFEE_PRODUCTS');
+
+        // Check for new version if in admin
+        if (IS_ADMIN_FLAG === true) {
+            $newVersion = $this->checkForNewVersion();
+            if ($newVersion !== false) {
+                $this->title .= ' <span style="color: red;">(New version ' . $newVersion . ' available!)</span>';
+            }
+        }
     }
 
     public function process(): void
@@ -233,6 +242,26 @@ class ot_extraorderfee
         }
 
         return $map;
+    }
+
+    private function checkForNewVersion()
+    {
+        $currentVersion = '1.0.0';
+        $remoteUrl = 'https://raw.githubusercontent.com/dbltoe/extraorderfee/main/version.txt';
+
+        $remoteVersion = @file_get_contents($remoteUrl);
+
+        if ($remoteVersion === false) {
+            return false;
+        }
+
+        $remoteVersion = trim($remoteVersion);
+
+        if (version_compare($remoteVersion, $currentVersion, '>')) {
+            return $remoteVersion;
+        }
+
+        return false;
     }
 
     public function check(): int
