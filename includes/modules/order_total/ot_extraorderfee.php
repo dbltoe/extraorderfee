@@ -3,7 +3,7 @@
  * Extra Order Fee Order Total Module
  *
  * @package   OrderTotal
- * @copyright Copyright 2003-2012 Zen Cart Development Team
+ * @copyright Copyright 2003-2026 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license   http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version   $Id: ot_extraorderfee.php 6101 2026-03-06 15:30:22Z dbltoe $
@@ -329,3 +329,4 @@ class ot_extraorderfee
         $db->Execute("INSERT INTO " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, use_function, set_function, date_added) VALUES ('Tax Class', 'MODULE_ORDER_TOTAL_EXTRAORDERFEE_TAX_CLASS', '0', 'Use the following tax class on the extra fee.', '6', '3', 'zen_get_tax_class_title', 'zen_cfg_pull_down_tax_classes(', now())");
 
         $db->Execute("INSERT INTO " . TABLE_CONFIGURATION . " (configuration_title, configuration_key
+
