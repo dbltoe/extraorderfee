@@ -60,7 +60,7 @@ class ot_extraorderfee
             return;
         }
 
-        $taxClassId = (int)(MODULE_ORDER_TOTAL_EXTRAORDERFEE_TAX_CLASS ?? 0);
+        $taxClassId = (int)(defined('MODULE_ORDER_TOTAL_EXTRAORDERFEE_TAX_CLASS') ? MODULE_ORDER_TOTAL_EXTRAORDERFEE_TAX_CLASS : 0);
 
         $taxAddress = zen_get_tax_locations();
 
@@ -108,7 +108,7 @@ class ot_extraorderfee
     {
         global $db;
 
-        $zoneId = (int)(MODULE_ORDER_TOTAL_EXTRAORDERFEE_ZONE ?? 0);
+        $zoneId = (int)(defined('MODULE_ORDER_TOTAL_EXTRAORDERFEE_ZONE') ? MODULE_ORDER_TOTAL_EXTRAORDERFEE_ZONE : 0);
 
         // No zone restriction
         if ($zoneId === 0) {
@@ -173,8 +173,8 @@ class ot_extraorderfee
 
         // Get product details: manufacturer and all linked categories
         $sql = "SELECT p.manufacturers_id, ptc.categories_id
-                FROM " . TABLE_PRODUCTS . " p
-                LEFT JOIN " . TABLE_PRODUCTS_TO_CATEGORIES . " ptc ON p.products_id = ptc.products_id
+                FROM " . TABLE_PRODUCT . " p
+                LEFT JOIN " . TABLE_PRODUCT_TO_CATEGORIES . " ptc ON p.products_id = ptc.products_id
                 WHERE p.products_id = :productId";
         $sql = $db->bindVars($sql, ':productId', $productId, 'integer');
         $result = $db->Execute($sql);
@@ -214,7 +214,7 @@ class ot_extraorderfee
 
     private function parseFeeConfig(string $key): array
     {
-        $value = constant($key) ?? '';
+        $value = defined($key) ? constant($key) : '';
         if (empty($value)) {
             return [];
         }
